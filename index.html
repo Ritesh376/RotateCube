@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(blob-scene-haikei.png);
+            background-size: cover;
+            
+        }
+        canvas{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .heading {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .heading h1 {
+            font-size: 80px;
+            color: rgb(123, 4, 99)
+        }
+        .button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-200%);
+            z-index: 1;
+        }
+        .button button {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .stopbutton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1;
+        }
+        .stopbutton button {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            
+            transform: translateX(-300%);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>
+            Magic Cube
+        </h1>
+    </div>
+    
+    <canvas></canvas>
+    <div class="button">
+        <button onclick="resetAnimation()">Start Animation</button>
+    </div>
+    <div class="stopbutton">
+        <button onclick="isAnimating=false;cancelAnimationFrame(animationId)">Stop Animation</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
