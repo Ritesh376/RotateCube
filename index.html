@@ -2,63 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Document</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             background-image: url(blob-scene-haikei.png);
             background-size: cover;
-            
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        canvas{
+
+        canvas {
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
         }
+
         .heading {
             text-align: center;
-            color: white;
             padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .heading h1 {
-            font-size: 80px;
-            color: rgb(123, 4, 99)
-        }
-        .button {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-200%);
-            z-index: 1;
-        }
-        .button button {
-            padding: 10px 20px;
-            background: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+            margin-top: 2vh;
         }
 
-        .stopbutton {
+        .heading h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            color: rgb(123, 4, 99);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .controls {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            z-index: 1;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
         }
-        .stopbutton button {
-            padding: 10px 20px;
-            background: white;
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 16px;
-            
-            transform: translateX(-300%);
-            z-index: 2;
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: bold;
+            color: rgb(123, 4, 99);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: rgb(123, 4, 99);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -70,10 +92,8 @@
     </div>
     
     <canvas></canvas>
-    <div class="button">
+    <div class="controls">
         <button onclick="resetAnimation()">Start Animation</button>
-    </div>
-    <div class="stopbutton">
         <button onclick="isAnimating=false;cancelAnimationFrame(animationId)">Stop Animation</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
